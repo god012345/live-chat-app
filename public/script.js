@@ -45,9 +45,9 @@ function joinRoom(room) {
   addSystemMessage(`Joined room: #${room}`);
 }
 
-socket.on('chat message', function(data) {
-  appendMessage(data)
-});
+// socket.on('chat message', function(data) {
+//   appendMessage(data)
+// });
 
 function addSystemMessage(msg) {
   const item = document.createElement('li');

@@ -21,7 +21,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat message', (data) => {
-    socket.to(data.room).emit('chat message', data);
+    io.on('connection', (socket) => {
+  socket.on('chat message', (data) => {
+    socket.to(data.room).emit('chat message', data); // 🔁 send to others
+    socket.emit('chat message', data);               // 🧍 send once to sender
+  });
+});
   });
 // Detecting Disconnections
   socket.on('disconnect', () => {
