@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat message', (data) => {
-    io.to(data.room).emit('chat message', data); // emit only in that room
+    socket.to(data.room).emit('chat message', data);
   });
 // Detecting Disconnections
   socket.on('disconnect', () => {
