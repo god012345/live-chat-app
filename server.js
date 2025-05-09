@@ -6,21 +6,6 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 3000
 // serving static file 
 app.use(express.static('public'));
-// chat message 
-io.on('connection', (socket) => {
-  console.log('A user connected');
-
-  socket.on('chat message', (data) => {
-    io.emit('chat message', data); // pass full object now
-  });
-
-  socket.on('disconnect', () => {
-    console.log('A user disconnected');
-  });
-});
-
-
-
 // route handling (fallback)
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
