@@ -46,10 +46,9 @@ function joinRoom(room) {
 }
 
 socket.on('chat message', function(data) {
-   // Skip if this is your own recently sent message
-  if (!(data.user === nickname && data.time === lastSentMessage)) {
+
     appendMessage(data);
-  }
+ 
 });
 lastSentMessage = new Date().toLocaleTimeString();
 function addSystemMessage(msg) {

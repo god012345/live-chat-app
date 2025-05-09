@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 // serving static file 
 app.use(express.static('public'));
 // route handling (fallback)
@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat message', (data) => {
-    io.to(data.room).emit('chat message', data); // emit only in that room
+    socket.to(data.room).emit('chat message', data); // emit only in that room
   });
 // Detecting Disconnections
   socket.on('disconnect', () => {
