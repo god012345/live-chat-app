@@ -46,10 +46,7 @@ function joinRoom(room) {
 }
 
 socket.on('chat message', function(data) {
-  const item = document.createElement('li');
-  item.innerHTML = `[${data.time}] &lt;${data.user}&gt; ${data.message}`;
-  messages.appendChild(item);
-  messages.scrollTop = messages.scrollHeight;
+  appendMessage(data)
 });
 
 function addSystemMessage(msg) {
