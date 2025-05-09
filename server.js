@@ -10,13 +10,9 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
   console.log('A user connected');
 
-  socket.on('chat message', (msg) => {
-  const time = new Date().toLocaleTimeString();
-  const fullMsg = `[${time}] <${socket.username || 'Guest'}> ${msg}`;
-  socket.broadcast.emit('chat message', fullMsg);
-  socket.emit('chat message', fullMsg); // only once to sender
-});
-
+  socket.on('chat message', (data) => {
+    io.emit('chat message', data); // pass full object now
+  });
 
   socket.on('disconnect', () => {
     console.log('A user disconnected');
